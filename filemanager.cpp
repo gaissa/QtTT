@@ -3,7 +3,6 @@
 FileManager::FileManager(QWidget *parent) :
              QMainWindow(parent)
 {
-    //qDebug() << "hello from FileManager!";
 }
 
 // The constructor.
@@ -146,12 +145,10 @@ void FileManager::updateData(int year, int month, int day, QString category, dou
     QStringList q = readFile().filter(temp).filter(category);
 
     if (!q.isEmpty())
-    {
-        //qDebug() << "INDEX" << readFile().indexOf(q[0]);
+    {        
         q = q[0].split(',');
 
-        oldTemporaryData = q;
-        //qDebug() << q;
+        oldTemporaryData = q;        
 
         double t = q[day+1].toDouble() + amount;
 
@@ -173,9 +170,7 @@ void FileManager::updateData(int year, int month, int day, QString category, dou
         else
         {
             temp += QString::number(year) + "-" + QString::number(month) + "," + category;
-        }
-
-        //int tempM = QDate::currentDate().daysInMonth();
+        }       
 
         for (int i = 1; i <= 31; i++)
         {
@@ -199,12 +194,7 @@ void FileManager::writeData(QStringList q, bool checkStatus)
     QFile file(openFile);
 
     if (checkStatus == true)
-    {        
-        //qDebug() << openFile;
-        //qDebug() << "Write data here...";
-        //qDebug() << q;
-        //qDebug() << "OLD" << oldTemporaryData;
-
+    {
         projectTotal = 0.0;
 
         for (int i = 2; i <= oldTemporaryData.count()-1; i++)
@@ -240,7 +230,6 @@ void FileManager::writeData(QStringList q, bool checkStatus)
            return;
         }
 
-        //file.seek(0);
         QTextStream out(&file);
         out << text;
         file.close();
@@ -254,7 +243,6 @@ void FileManager::writeData(QStringList q, bool checkStatus)
            return;
         }
 
-        //file.seek(0);
         QTextStream out(&file);
         out << text;
         file.close();
@@ -267,9 +255,7 @@ double FileManager::getCategoryTotal(bool check, QString activeCategory, int yea
 
     if (check)
     {
-       QString temp;
-
-       //qDebug() << "hrello";
+       QString temp;       
 
        if (month < 10)
        {
@@ -289,15 +275,10 @@ double FileManager::getCategoryTotal(bool check, QString activeCategory, int yea
        }
 
        return temp2;
-    }
+    }    
 
-    //double temp = 0.0;
-    //for (int i = 2; i <= pTotal.count()-1; i++)
-    //{
-       //temp = temp + pTotal[i].toDouble();
-    //}
-
-    //return temp;
+    double temp2 = 0.0;
+    return temp2;
 }
 
 // Read the monthy total project times.
@@ -336,10 +317,7 @@ void FileManager::updateSettings(QString category)
 
     QFile file("./settings/settings.ttt");
     file.open(QFile::Append);
-    file.write(c.toUtf8().constData());
-
-    //qDebug() << "CATEGORY" << category;
-
+    file.write(c.toUtf8().constData());   
     file.close();
 }
 

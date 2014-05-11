@@ -208,10 +208,10 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
     date.setDate(tempYear, tempMonth, 1);
 
     QLocale locale  = QLocale(QLocale::C, QLocale::UnitedStates); // set the locale you want here
-    QString swedishDate = locale.toString(date, "MMMM yyyy");
+    QString englishDate = locale.toString(date, "MMMM yyyy");
 
     ui->plot->plotLayout()->removeAt(1);
-    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, swedishDate));
+    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, englishDate));
 
     ui->plot->replot();
 }
@@ -219,16 +219,16 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
 // FIX TO F11
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    // QWidget::mouseDoubleClickEvent(e);
+    QWidget::mouseDoubleClickEvent(e);
 
-    //if(isFullScreen())
-    //{
-       //this->setWindowState(Qt::WindowMaximized);
-    //}
-    //else
-    //{
-       //this->setWindowState(Qt::WindowFullScreen);
-    //}
+    if(isFullScreen())
+    {
+       this->setWindowState(Qt::WindowMaximized);
+    }
+    else
+    {
+       this->setWindowState(Qt::WindowFullScreen);
+    }
 }
 
 // Update the progress bar.
@@ -606,4 +606,16 @@ void MainWindow::on_actionEDIT_CATEGORIES_triggered()
         ui->comboBox->addItem(temp[i].split(",")[0].toLocal8Bit());
     }
     ui->comboBox->update();
+}
+
+void MainWindow::on_actionABOUT_QtTT_triggered()
+{
+    AboutDialog *a = new AboutDialog();
+
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    Qt::WindowFlags flags;
+    flags = (Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    a->setWindowFlags(flags);
+
+    a->exec();
 }

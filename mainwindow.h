@@ -47,6 +47,8 @@ private slots:
 
     void on_actionEDIT_CATEGORIES_triggered();
 
+    void on_actionABOUT_QtTT_triggered();
+
 public slots:
     void nproject();
     void lproject();

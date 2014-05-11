@@ -34,7 +34,12 @@ void StartDialog::on_loadButton_clicked()
 
 void StartDialog::on_aboutButton_clicked()
 {
-    QMessageBox msgBox;
-    msgBox.setText("TEST");
-    msgBox.exec();
+    AboutDialog *a = new AboutDialog();
+
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    Qt::WindowFlags flags;
+    flags = (Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    a->setWindowFlags(flags);
+
+    a->exec();
 }

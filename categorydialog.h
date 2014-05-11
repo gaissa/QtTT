@@ -3,6 +3,7 @@
 
 #include <QDialog>
 
+
 namespace Ui {
 class CategoryDialog;
 }
@@ -19,8 +20,8 @@ public:
 
 private:
     Ui::CategoryDialog *ui;
-    QString newCategory;
     class FileManager *f;
+    QString newCategory;   
 
 public slots:    
 

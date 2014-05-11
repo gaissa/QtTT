@@ -2,6 +2,7 @@
 #define STARTDIALOG_H
 
 #include <QDialog>
+#include "aboutdialog.h"
 #include "filemanager.h"
 #include "mainwindow.h"
 

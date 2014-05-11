@@ -14,11 +14,11 @@ public:
     FileManager(QWidget *parent = 0);
     FileManager(int year, int month, QString filename, bool totals);
     ~FileManager();
+
     QStringList pTotal;
     double projectTotal;
 
     void deleteCategory(QStringList categories);
-
     bool totalCheck;
     int today;
     void clearData();
@@ -29,8 +29,7 @@ public:
     void updateData(int year, int month, int day, QString category, double amount);
     void writeData(QStringList q, bool checkStatus);
     QStringList readFile();
-    void readMonthlyTotals(QString data);
-    //QStringList temp2;
+    void readMonthlyTotals(QString data);   
     double getTotal();
     void updateSettings(QString category);
 
