@@ -608,6 +608,7 @@ void MainWindow::on_actionEDIT_CATEGORIES_triggered()
     ui->comboBox->update();
 }
 
+// Show about dialog.
 void MainWindow::on_actionABOUT_QtTT_triggered()
 {
     AboutDialog *a = new AboutDialog();

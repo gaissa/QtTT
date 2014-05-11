@@ -251,7 +251,7 @@ void FileManager::writeData(QStringList q, bool checkStatus)
 
 double FileManager::getCategoryTotal(bool check, QString activeCategory, int year, int month)
 {
-    qDebug() << month;
+    //qDebug() << month;
 
     if (check)
     {
