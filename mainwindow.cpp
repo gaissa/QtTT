@@ -389,29 +389,6 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
     activeCategory = arg1;
 }
 
-// Open the category settings.
-void MainWindow::on_pushButton_4_clicked()
-{
-    CategoryDialog *cd = new CategoryDialog;
-    cd->setAttribute(Qt::WA_DeleteOnClose);
-    Qt::WindowFlags flags;
-    flags = (Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-    cd->setWindowFlags(flags);
-    cd->setModal(true);
-    cd->exec();
-
-    ui->comboBox->clear();
-
-    FileManager *settingsFile = new FileManager(1, 0, "./settings/settings.ttt", false);
-    QStringList temp = settingsFile->readFile();
-
-    for (int i = 0; i < temp.count(); i++)
-    {
-        ui->comboBox->addItem(temp[i].split(",")[0].toLocal8Bit());
-    }
-    ui->comboBox->update();
-}
-
 // New Project at start dialog slot.
 void MainWindow::nproject()
 {
@@ -590,16 +567,25 @@ void MainWindow::on_actionEXPORT_AS_PNG_triggered()
     }
 }
 
+// Edit colors.
 void MainWindow::on_actionEDIT_CATEGORY_COLORS_triggered()
 {
-    FileManager *settingsFile = new FileManager(1, 0, "./settings/c_settings.ttt", false);
-    QStringList temp = settingsFile->readFile();
+//    FileManager *settingsFile = new FileManager(1, 0, "./settings/c_settings.ttt", false);
+//    QStringList temp = settingsFile->readFile();
 
-    QMessageBox msgBox;
-    msgBox.setText(temp[0]);
-    msgBox.exec();
+//    QColor color = QColorDialog::getColor(Qt::black, this, "Text Color");
+
+//    if(color.isValid())
+//    {
+//        QString red = QString::number(color.red());
+//        QString green = QString::number(color.green());
+//        QString blue = QString::number(color.blue());
+
+//        QMessageBox::information(this, "Text Color", "You selected " + red);
+//    }
 }
 
+// Edit categories.
 void MainWindow::on_actionEDIT_CATEGORIES_triggered()
 {
     CategoryDialog *cd = new CategoryDialog;

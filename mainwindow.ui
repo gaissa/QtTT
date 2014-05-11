@@ -18,7 +18,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="7" column="0">
+    <item row="6" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QPushButton" name="pushButton">
@@ -267,38 +267,14 @@ background-color: rgb(245, 245, 245);</string>
     <item row="9" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QHBoxLayout" name="plotholder">
-        <item>
-         <widget class="QCustomPlot" name="plot" native="true">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="6" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QComboBox" name="comboBox">
-        <property name="currentText">
-         <string/>
+       <widget class="QCustomPlot" name="plot" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="currentIndex">
-         <number>-1</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="text">
-         <string>EDIT CATEGORIES</string>
-        </property>
+        <zorder>comboBox</zorder>
        </widget>
       </item>
      </layout>
@@ -322,23 +298,7 @@ background-color: rgb(245, 245, 245);</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
-     <widget class="Line" name="line_3">
-      <property name="styleSheet">
-       <string notr="true">color: rgb(225, 225, 225);</string>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="lineWidth">
-       <number>2</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="0">
+    <item row="11" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
        <widget class="QLabel" name="label_2">
@@ -419,6 +379,16 @@ background-color: rgb(245, 245, 245);</string>
       </property>
      </widget>
     </item>
+    <item row="7" column="0">
+     <widget class="QComboBox" name="comboBox">
+      <property name="currentText">
+       <string/>
+      </property>
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -455,9 +425,16 @@ background-color: rgb(245, 245, 245);</string>
     <addaction name="actionEDIT_CATEGORIES"/>
     <addaction name="actionEDIT_CATEGORY_COLORS"/>
    </widget>
+   <widget class="QMenu" name="menuHELP">
+    <property name="title">
+     <string>HELP</string>
+    </property>
+    <addaction name="actionABOUT_QtTT"/>
+   </widget>
    <addaction name="menuFILE"/>
    <addaction name="menuEXPORT"/>
    <addaction name="menuSETTINGS"/>
+   <addaction name="menuHELP"/>
   </widget>
   <action name="actionSAVE_AS">
    <property name="text">
@@ -492,6 +469,11 @@ background-color: rgb(245, 245, 245);</string>
   <action name="actionEDIT_CATEGORY_COLORS">
    <property name="text">
     <string>EDIT CATEGORY COLORS</string>
+   </property>
+  </action>
+  <action name="actionABOUT_QtTT">
+   <property name="text">
+    <string>ABOUT QtTT</string>
    </property>
   </action>
  </widget>

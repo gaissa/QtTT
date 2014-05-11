@@ -29,21 +29,6 @@ CategoryDialog::~CategoryDialog()
     delete ui;
 }
 
-// Choose the colors.
-void CategoryDialog::on_colorButton_clicked()
-{
-    QColor color = QColorDialog::getColor(Qt::black, this, "Text Color");
-
-    if(color.isValid())
-    {
-        QString red = QString::number(color.red());
-        QString green = QString::number(color.green());
-        QString blue = QString::number(color.blue());
-
-        QMessageBox::information(this, "Text Color", "You selected " + red);
-    }
-}
-
 // Add new category.
 void CategoryDialog::on_addButton_clicked()
 {

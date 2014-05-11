@@ -31,3 +31,10 @@ void StartDialog::on_loadButton_clicked()
     w->showMaximized();
     this->close();
 }
+
+void StartDialog::on_aboutButton_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setText("TEST");
+    msgBox.exec();
+}

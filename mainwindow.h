@@ -31,9 +31,7 @@ private slots:
 
     void on_pushButton_3_clicked();    
 
-    void on_comboBox_activated(const QString &arg1);
-
-    void on_pushButton_4_clicked();
+    void on_comboBox_activated(const QString &arg1);   
 
     void on_spinBox_2_valueChanged(int arg1);
 

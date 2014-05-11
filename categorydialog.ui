@@ -31,22 +31,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="editHolder">
-       <item>
-        <widget class="QPushButton" name="colorButton">
-         <property name="text">
-          <string>SET COLOR</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="deleteButton">
-         <property name="text">
-          <string>DELETE</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QHBoxLayout" name="editHolder"/>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -67,6 +52,13 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteButton">
+       <property name="text">
+        <string>DELETE</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

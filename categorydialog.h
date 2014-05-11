@@ -25,7 +25,6 @@ private:
 public slots:    
 
 private slots:
-    void on_colorButton_clicked();
     void on_addButton_clicked();
     void on_deleteButton_clicked();
 };

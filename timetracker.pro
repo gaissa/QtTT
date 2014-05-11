@@ -17,14 +17,17 @@ SOURCES  += main.cpp \
            ./qcustomplot/qcustomplot.cpp \
     filemanager.cpp \
     categorydialog.cpp \
-    startdialog.cpp
+    startdialog.cpp \
+    aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
             ./qcustomplot/qcustomplot.h \
     filemanager.h \
     categorydialog.h \
-    startdialog.h
+    startdialog.h \
+    aboutdialog.h
 
 FORMS    += mainwindow.ui \
     categorydialog.ui \
-    startdialog.ui
+    startdialog.ui \
+    aboutdialog.ui

@@ -22,6 +22,7 @@ public:
 private slots:
     void on_newButton_clicked();
     void on_loadButton_clicked();
+    void on_aboutButton_clicked();
 
 private:
     Ui::StartDialog *ui;
