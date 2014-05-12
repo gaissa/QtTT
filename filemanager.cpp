@@ -202,7 +202,7 @@ void FileManager::writeData(QStringList q, bool checkStatus)
            projectTotal = projectTotal + oldTemporaryData[i].toDouble();
         }
 
-        qDebug() << "PROJECT TOTAL" << projectTotal;
+        //qDebug() << "PROJECT TOTAL" << projectTotal;
 
         QString oldData = oldTemporaryData.join(",");
         QString newData = q.join(",");
@@ -327,7 +327,7 @@ void FileManager::deleteCategory(QStringList categories)
     QFile file("./settings/settings.ttt");
     file.open(QFile::WriteOnly);
 
-    qDebug() << categories;
+    //qDebug() << categories;
 
     file.close();
 

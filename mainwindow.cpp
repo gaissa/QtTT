@@ -104,6 +104,9 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
         }
         ui->spinBox->setValue(today.month());
         ui->spinBox_2->setValue(today.year());
+
+        ticks.clear();
+        ticksY.clear();
     }
 
     for (int i = 0; i < f->categoryCount(); i++)
