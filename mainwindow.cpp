@@ -237,7 +237,7 @@ void MainWindow::updater()
     //QString todayTemp = QDate::currentDate().toString();
 
     QTime q;
-    qDebug() << q.currentTime().toString() << "JOO-O";
+    //qDebug() << q.currentTime().toString() << " THIS IS TIME";
 
     if (QTime::currentTime().toString() == "23:59:59")
     {
@@ -302,11 +302,14 @@ void MainWindow::on_pushButton_clicked()
     ui->actionSAVE_AS->setDisabled(true);
     ui->actionLOAD_3->setDisabled(true);
 
+    ui->actionEDIT_CATEGORIES->setDisabled(true);
+    ui->actionEDIT_CATEGORY_COLORS->setDisabled(true);
+
     today = QDate::currentDate();
 
     tempDay = today.day();
 
-    qDebug() << "TOTAL: " << f->getTotal();
+    //qDebug() << "TOTAL: " << f->getTotal();
 
     ui->pushButton->setText("TRACK");
     ui->pushButton->setEnabled(false);
@@ -333,6 +336,9 @@ void MainWindow::on_pushButton_2_clicked()
 
     ui->actionSAVE_AS->setEnabled(true);
     ui->actionLOAD_3->setEnabled(true);
+
+    ui->actionEDIT_CATEGORIES->setEnabled(true);
+    ui->actionEDIT_CATEGORY_COLORS->setEnabled(true);
 
     ui->spinBox->setValue(today.month());
     ui->spinBox_2->setValue(today.year());
@@ -477,9 +483,7 @@ void MainWindow::selectionChanged()
 
             //qDebug() << val;
 
-            QString str;
-
-            qDebug() << val;
+            QString str;            
 
             if (val < 10.0)
             {
@@ -606,6 +610,8 @@ void MainWindow::on_actionEDIT_CATEGORIES_triggered()
         ui->comboBox->addItem(temp[i].split(",")[0].toLocal8Bit());
     }
     ui->comboBox->update();
+
+    ui->comboBox->setCurrentIndex(0);
 }
 
 // Show about dialog.
