@@ -257,11 +257,12 @@ void MainWindow::updater()
         ui->pushButton_2->click();
 
         QTimer *timer = new QTimer;
+        timer->deleteLater(true);
+
         timer->setSingleShot(true);
+        connect(timer, SIGNAL(timeout()), this, SLOT(dayChangeSlot()));
 
-        connect(timer, SIGNAL(timeout()), this, SLOT(yourSlot()));
-
-        // !!
+        // Run the timer for day change.
         timer->start(2000);               
     }
     else
@@ -269,21 +270,21 @@ void MainWindow::updater()
         tCounter++;
         sCounter++;
 
-        if (sCounter == 59)
+        if (sCounter == 60)
         {
-            sCounter = 1;
+            sCounter = 0;
             mCounter++;
             ui->label_5->setText(QString::number(mCounter));
 
-            if (mCounter == 59)
+            if (mCounter == 60)
             {
-                mCounter = 1;
+                mCounter = 0;
                 hCounter++;
                 ui->label_8->setText(QString::number(hCounter));
             }
         }
 
-        if (sCounter < 59)
+        if (sCounter < 10)
         {
             ui->label_3->setText("0" + QString::number(sCounter));
         }
@@ -295,14 +296,10 @@ void MainWindow::updater()
     }
 }
 
-// !!!!!
-void MainWindow::yourSlot()
+// Delay a bit and start a new day.
+void MainWindow::dayChangeSlot()
 {
-    qDebug() << "terve";
-    today = QDate::currentDate();
-
-    qDebug() << today;
-
+    today = QDate::currentDate();   
     ui->pushButton->click();
 }
 

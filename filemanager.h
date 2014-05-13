@@ -10,8 +10,7 @@ class FileManager : public QMainWindow
 {
     Q_OBJECT
 
-public:   
-    FileManager(QWidget *parent = 0);
+public:
     FileManager(int year, int month, QString filename, bool totals);
     ~FileManager();
 

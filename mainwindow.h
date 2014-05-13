@@ -22,34 +22,25 @@ public:
     ~MainWindow();
 
 private slots:
+    void selectionChanged();
+    void on_actionQUIT_triggered();
+    void on_actionEXPORT_AS_PDF_triggered();
+    void on_actionEXPORT_AS_PNG_triggered();
+    void on_actionEDIT_CATEGORY_COLORS_triggered();
+    void on_actionEDIT_CATEGORIES_triggered();
+    void on_actionABOUT_QtTT_triggered();
+
     void on_spinBox_valueChanged(int arg1);
-    //void graphClicked(QCPAbstractPlottable *plottable);
-    //void itemClicked(QCPAbstractItem *item);
     void on_pushButton_clicked();
     void updater();
-    void yourSlot();
-
+    void dayChangeSlot();
     void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();    
-
-    void on_comboBox_activated(const QString &arg1);   
-
+    void on_pushButton_3_clicked();
+    void on_comboBox_activated(const QString &arg1);
     void on_spinBox_2_valueChanged(int arg1);
 
-    void selectionChanged();
-
-    void on_actionQUIT_triggered();
-
-    void on_actionEXPORT_AS_PDF_triggered();
-
-    void on_actionEXPORT_AS_PNG_triggered();
-
-    void on_actionEDIT_CATEGORY_COLORS_triggered();
-
-    void on_actionEDIT_CATEGORIES_triggered();
-
-    void on_actionABOUT_QtTT_triggered();
+    //void graphClicked(QCPAbstractPlottable *plottable);
+    //void itemClicked(QCPAbstractItem *item);
 
 public slots:
     void nproject();
@@ -64,12 +55,10 @@ private:
     QPen pen;
     QList <QCPBars*>list;
     QCPBars *bar;
-    QVector<double> ticks;
-    //QVector<double> ticks2;
+    QVector<double> ticks;   
     QVector<double> ticksY;
     QVector<QString> labels;
-    void setupPlot(int year, int month, int day, bool firstLaunch, QString filename);
-    //void mouseDoubleClickEvent(QMouseEvent *e);
+    void setupPlot(int year, int month, int day, bool firstLaunch, QString filename);   
     void readData(QString filename);
     int tCounter;
     int sCounter;
@@ -82,7 +71,10 @@ private:
     int tempYear;
     QString loadedFile;
     QString activeCategory;
-    QStringList colorHolder;
+
+    //QStringList colorHolder;
+    //void mouseDoubleClickEvent(QMouseEvent *e);
+    //QVector<double> ticks2;
 };
 
 #endif // MAINWINDOW_H

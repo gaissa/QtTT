@@ -2,6 +2,7 @@
 #include "ui_startdialog.h"
 
 
+// The constructor
 StartDialog::StartDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::StartDialog)
@@ -12,26 +13,37 @@ StartDialog::StartDialog(QWidget *parent) :
     w->setAttribute(Qt::WA_DeleteOnClose);
     QObject::connect(ui->newButton, SIGNAL(clicked()), w, SLOT(nproject()));
     QObject::connect(ui->loadButton, SIGNAL(clicked()), w, SLOT(lproject()));
+
+    // Create folder for settings if does not exists.
+    QDir dir("./settings");
+
+    if (!dir.exists())
+    {
+        dir.mkpath(".");
+    }
 }
 
+// The destructor.
 StartDialog::~StartDialog()
 {
-    //qDebug() << "startDialog DELETED";
     delete ui;
 }
 
+// Create a new project.
 void StartDialog::on_newButton_clicked()
 {
     w->showMaximized();
     this->close();
 }
 
+// Load a new project.
 void StartDialog::on_loadButton_clicked()
 {    
     w->showMaximized();
     this->close();
 }
 
+// About dialog.
 void StartDialog::on_aboutButton_clicked()
 {
     AboutDialog *a = new AboutDialog();

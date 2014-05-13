@@ -1,11 +1,5 @@
 #include "filemanager.h"
 
-
-FileManager::FileManager(QWidget *parent) :
-             QMainWindow(parent)
-{
-}
-
 // The constructor.
 FileManager::FileManager(int year, int month, QString filename, bool totals)
 {    
