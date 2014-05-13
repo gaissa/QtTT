@@ -1,5 +1,6 @@
 #include "filemanager.h"
 
+
 FileManager::FileManager(QWidget *parent) :
              QMainWindow(parent)
 {
@@ -220,8 +221,7 @@ void FileManager::writeData(QStringList q, bool checkStatus)
 
         readMonthlyTotals(text);
 
-        text = text.replace(QString(oldData), QString(newData)); // replace text in string
-        //qDebug() << "NEW" << text << "END";
+        text = text.replace(QString(oldData), QString(newData)); // replace text in string       
 
         file.close();
 
@@ -312,8 +312,7 @@ double FileManager::getTotal()
 void FileManager::updateSettings(QString category)
 {
 
-    QString c = category + '\n';
-    //qDebug() << category.toUtf8().constData();
+    QString c = category + '\n';    
 
     QFile file("./settings/settings.ttt");
     file.open(QFile::Append);
@@ -326,8 +325,6 @@ void FileManager::deleteCategory(QStringList categories)
 {
     QFile file("./settings/settings.ttt");
     file.open(QFile::WriteOnly);
-
-    //qDebug() << categories;
 
     file.close();
 

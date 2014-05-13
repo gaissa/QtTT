@@ -1,7 +1,6 @@
 #include "categorydialog.h"
 #include "ui_categorydialog.h"
 #include "filemanager.h"
-#include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QColorDialog>

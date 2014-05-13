@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 // The constructor.
 MainWindow::MainWindow(QWidget *parent) :
             QMainWindow(parent),
@@ -28,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
 
-    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, "Interaction Example"));
+    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, returnMonth()));
 
     connect(ui->actionSAVE_AS, SIGNAL(triggered()), this, SLOT(nproject()));
     connect(ui->actionLOAD_3, SIGNAL(triggered()), this, SLOT(lproject()));
@@ -47,6 +48,17 @@ MainWindow::~MainWindow()
     //qDebug() << "mainWindow DELETED";
     delete f;
     delete ui;
+}
+
+QString MainWindow::returnMonth()
+{
+    QDate date;
+    date.setDate(tempYear, tempMonth, 1);
+
+    QLocale locale  = QLocale(QLocale::C, QLocale::UnitedStates); // set the locale you want here
+    QString englishDate = locale.toString(date, "MMMM yyyy");
+
+    return englishDate;
 }
 
 // Open the FileManager.
@@ -156,7 +168,7 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
     ui->plot->yAxis->setTickVector(ticksY);
     ui->plot->yAxis->setRange(0, 24);
     ui->plot->yAxis->setSubTickCount(6);
-    ui->plot->yAxis->setPadding(5); // a bit more space to the left border
+    ui->plot->yAxis->setPadding(5);
     ui->plot->yAxis->setLabel("Time spent in HOURS");
     ui->plot->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen;
@@ -187,14 +199,8 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
       ticksY.clear();
       setupPlot(tempYear, arg1, 1, false, loadedFile);
 
-      QDate date;
-      date.setDate(tempYear, tempMonth, 1);
-
-      QLocale locale  = QLocale(QLocale::C, QLocale::UnitedStates); // set the locale you want here
-      QString swedishDate = locale.toString(date, "MMMM yyyy");
-
       ui->plot->plotLayout()->removeAt(1);
-      ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, swedishDate));
+      ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, returnMonth()));
 
       ui->plot->replot();
 }
@@ -207,32 +213,26 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
     ticksY.clear();
     setupPlot(arg1, tempMonth, 1, false, loadedFile);
 
-    QDate date;
-    date.setDate(tempYear, tempMonth, 1);
-
-    QLocale locale  = QLocale(QLocale::C, QLocale::UnitedStates); // set the locale you want here
-    QString englishDate = locale.toString(date, "MMMM yyyy");
-
     ui->plot->plotLayout()->removeAt(1);
-    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, englishDate));
+    ui->plot->plotLayout()->addElement(1, 0, new QCPPlotTitle(ui->plot, returnMonth()));
 
     ui->plot->replot();
 }
 
 // FIX TO F11
-void MainWindow::mouseDoubleClickEvent(QMouseEvent *e)
-{
-    QWidget::mouseDoubleClickEvent(e);
+//void MainWindow::mouseDoubleClickEvent(QMouseEvent *e)
+//{
+//    QWidget::mouseDoubleClickEvent(e);
 
-    if(isFullScreen())
-    {
-       this->setWindowState(Qt::WindowMaximized);
-    }
-    else
-    {
-       this->setWindowState(Qt::WindowFullScreen);
-    }
-}
+//    if(isFullScreen())
+//    {
+//       this->setWindowState(Qt::WindowMaximized);
+//    }
+//    else
+//    {
+//       this->setWindowState(Qt::WindowFullScreen);
+//    }
+//}
 
 // Update the progress bar.
 void MainWindow::updater()
@@ -482,9 +482,7 @@ void MainWindow::selectionChanged()
 
         if (item->selected() || ui->plot->plottable(i)->selected())
         {
-            double val = f->getCategoryTotal(true, ui->plot->plottable(i)->name(), tempYear, tempMonth);
-
-            //qDebug() << val;
+            double val = f->getCategoryTotal(true, ui->plot->plottable(i)->name(), tempYear, tempMonth);            
 
             QString str;            
 
@@ -515,8 +513,6 @@ void MainWindow::selectionChanged()
 // Quit the app.
 void MainWindow::on_actionQUIT_triggered()
 {
-     //ui->plot->savePdf("test.pdf", false, 0, 0, "", "TESTI");
-
      QMessageBox msgBox;
      msgBox.setText("Really quit want to quit?");
      msgBox.setInformativeText("The changes has been saved automatically!");

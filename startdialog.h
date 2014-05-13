@@ -6,6 +6,7 @@
 #include "filemanager.h"
 #include "mainwindow.h"
 
+
 namespace Ui {
 class StartDialog;
 }

@@ -7,6 +7,7 @@
 #include "startdialog.h"
 #include "categorydialog.h"
 
+
 namespace Ui
 {
     class MainWindow;
@@ -54,6 +55,7 @@ public slots:
     void lproject();
 
 private:
+    QString returnMonth();
     Ui::MainWindow *ui;
     QDate date;
     QDate today;
@@ -65,7 +67,7 @@ private:
     QVector<double> ticksY;
     QVector<QString> labels;
     void setupPlot(int year, int month, int day, bool firstLaunch, QString filename);
-    void mouseDoubleClickEvent(QMouseEvent *e);
+    //void mouseDoubleClickEvent(QMouseEvent *e);
     void readData(QString filename);
     int tCounter;
     int sCounter;

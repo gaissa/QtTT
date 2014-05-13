@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QFile>
-#include <QDebug>
+#include <QTextStream>
 #include <QDate>
 
 class FileManager : public QMainWindow
@@ -29,7 +29,7 @@ public:
     void updateData(int year, int month, int day, QString category, double amount);
     void writeData(QStringList q, bool checkStatus);
     QStringList readFile();
-    void readMonthlyTotals(QString data);   
+    void readMonthlyTotals(QString data);
     double getTotal();
     void updateSettings(QString category);
 
