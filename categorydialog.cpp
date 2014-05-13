@@ -18,13 +18,14 @@ CategoryDialog::CategoryDialog(QWidget *parent) :
     for (int i = 0; i < temp.count(); i++)
     {
         ui->categoryList->addItem(temp[i].split(",")[0].toLocal8Bit());
-        ui->categoryList->sortItems();
+
+        // Sort the items (disabled right now)
+        //ui->categoryList->sortItems();
     }
 }
 
 CategoryDialog::~CategoryDialog()
-{
-    //qDebug() << "DELETED!";
+{   
     delete ui;
 }
 

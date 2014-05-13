@@ -36,16 +36,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->plot, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));
 
-    connect(ui->plot,
-            SIGNAL(plottableClick(QCPAbstractPlottable*, QMouseEvent*)),
-            this,
-            SLOT(graphClicked(QCPAbstractPlottable*)));
+    //connect(ui->plot,
+    //        SIGNAL(plottableClick(QCPAbstractPlottable*, QMouseEvent*)),
+    //        this,
+    //        SLOT(graphClicked(QCPAbstractPlottable*)));
+
+    //connect(ui->plot,
+    //        SIGNAL(itemClick(QCPAbstractItem*, QMouseEvent*)),
+    //        this,
+    //        SLOT(itemClicked(QCPAbstractItem*)));
 }
 
 // The destructor.
 MainWindow::~MainWindow()
 {
-    //qDebug() << "mainWindow DELETED";
     delete f;
     delete ui;
 }
@@ -102,6 +106,7 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
         list[0]->moveAbove(list[1]);
     }
 
+    // Check for the first launch.
     if (firstLaunch)
     {
         // Setup legend:
@@ -153,14 +158,14 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
         ticksY.append(i);
     }
 
+    // Prepare x-axis
     ui->plot->xAxis->setAutoTicks(false);
     ui->plot->xAxis->setAutoTickLabels(true);
-    ui->plot->xAxis->setTickVector(ticks);
-    //ui->plot->xAxis->setTickLabelRotation(60);
+    ui->plot->xAxis->setTickVector(ticks);    
     ui->plot->xAxis->setSubTickCount(0);
     ui->plot->xAxis->setTickLength(0, 4);
     ui->plot->xAxis->grid()->setVisible(true);
-    ui->plot->xAxis->setRange(0, date.daysInMonth()+8);
+    ui->plot->xAxis->setRange(0, date.daysInMonth()+4);
 
     // Prepare y-axis
     ui->plot->yAxis->setAutoTicks(false);
@@ -186,10 +191,18 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
 }
 
 // The graph is clicked.
-void MainWindow::graphClicked(QCPAbstractPlottable *plottable)
-{
-  ui->statusBar->showMessage(QString("Clicked on graph '%1'.").arg(plottable->name()), 5000);
-}
+//void MainWindow::graphClicked(QCPAbstractPlottable *plottable)
+//{
+    //ui->statusBar->showMessage(QString("CHOSEN CATEGORY: '%1'.").arg(plottable->name()), 15000);
+    //ui->plot->x
+    //qDebug() << plottable;
+//}
+
+// The graph is clicked.
+//void MainWindow::itemClicked(QCPAbstractItem *item)
+//{
+    //qDebug() << item;
+//}
 
 // Change the month.
 void MainWindow::on_spinBox_valueChanged(int arg1)
@@ -237,10 +250,7 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
 // Update the progress bar.
 void MainWindow::updater()
 {
-    //QString todayTemp = QDate::currentDate().toString();
-
-    QTime q;
-    //qDebug() << q.currentTime().toString() << " THIS IS TIME";
+    QTime q;   
 
     if (QTime::currentTime().toString() == "23:59:59")
     {
@@ -259,21 +269,21 @@ void MainWindow::updater()
         tCounter++;
         sCounter++;
 
-        if (sCounter == 60)
+        if (sCounter == 59)
         {
-            sCounter = 0;
+            sCounter = 1;
             mCounter++;
             ui->label_5->setText(QString::number(mCounter));
 
-            if (mCounter == 60)
+            if (mCounter == 59)
             {
-                mCounter = 0;
+                mCounter = 1;
                 hCounter++;
                 ui->label_8->setText(QString::number(hCounter));
             }
         }
 
-        if (sCounter < 10)
+        if (sCounter < 59)
         {
             ui->label_3->setText("0" + QString::number(sCounter));
         }
@@ -302,11 +312,9 @@ void MainWindow::on_pushButton_clicked()
     ui->stoppedOrTracking->setStyleSheet("color: green; background-color: rgb(245, 245, 245)");
     ui->stoppedOrTracking->setText("TRACKING");
 
-    ui->actionSAVE_AS->setDisabled(true);
-    ui->actionLOAD_3->setDisabled(true);
+    ui->menuFILE->setDisabled(true);
 
-    ui->actionEDIT_CATEGORIES->setDisabled(true);
-    ui->actionEDIT_CATEGORY_COLORS->setDisabled(true);
+    ui->menuSETTINGS->setDisabled(true);
 
     today = QDate::currentDate();
 
@@ -337,11 +345,8 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stoppedOrTracking->setStyleSheet("color: darkRed; background-color: rgb(245, 245, 245)");
     ui->stoppedOrTracking->setText("STOPPED");
 
-    ui->actionSAVE_AS->setEnabled(true);
-    ui->actionLOAD_3->setEnabled(true);
-
-    ui->actionEDIT_CATEGORIES->setEnabled(true);
-    ui->actionEDIT_CATEGORY_COLORS->setEnabled(true);
+    ui->menuFILE->setEnabled(true);
+    ui->menuSETTINGS->setEnabled(true);
 
     ui->spinBox->setValue(today.month());
     ui->spinBox_2->setValue(today.year());
@@ -401,8 +406,6 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
 // New Project at start dialog slot.
 void MainWindow::nproject()
 {
-    //qDebug() << "NEW PROJECT!";
-
     ticks.clear();
     ticksY.clear();
 
@@ -431,7 +434,6 @@ void MainWindow::nproject()
         out << "0000-00,Default,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0";
 
         file.close();
-
     }
 
     loadedFile = fileName;
@@ -447,8 +449,6 @@ void MainWindow::nproject()
 // Load Project at start dialog slot.
 void MainWindow::lproject()
 {
-    //qDebug() << "LOAD PROJECT!";
-
     ticks.clear();
     ticksY.clear();
 
@@ -515,7 +515,6 @@ void MainWindow::on_actionQUIT_triggered()
 {
      QMessageBox msgBox;
      msgBox.setText("Really quit want to quit?");
-     msgBox.setInformativeText("The changes has been saved automatically!");
 
      QPushButton *connectButton = msgBox.addButton(tr("Quit"), QMessageBox::ActionRole);
      QPushButton *abortButton = msgBox.addButton(QMessageBox::Abort);
@@ -535,42 +534,64 @@ void MainWindow::on_actionQUIT_triggered()
 // Save plot as PDF.
 void MainWindow::on_actionEXPORT_AS_PDF_triggered()
 {
-    bool pdf = ui->plot->savePdf("test.pdf", true, 0, 0, "", "");
+    QString fileName = QFileDialog::getSaveFileName(this,
+             tr("Export as PDF"), "",
+             tr("PDF Files (*.pdf);;All Files (*)"));
 
-    if (pdf == true)
+    if (fileName.isEmpty())
     {
-        QMessageBox msgBox;
-        msgBox.setText("PDF has been saved succesfully!");
-        msgBox.exec();
+        return;
     }
-    else if (pdf == false)
+    else
     {
-        QMessageBox msgBox;
-        msgBox.setText("PDF not saved succesfully!");
-        msgBox.exec();
+        bool pdf = ui->plot->savePdf(fileName, true, 0, 0, "", "");
+
+        if (pdf == true)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("PDF has been saved succesfully!");
+            msgBox.exec();
+        }
+        else if (pdf == false)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("PDF was not saved succesfully!");
+            msgBox.exec();
+        }
     }
 }
 
 // Save plot as PNG.
 void MainWindow::on_actionEXPORT_AS_PNG_triggered()
 {
-    bool png = ui->plot->savePng("test.png", 0, 0, 1.0, 100);
+    QString fileName = QFileDialog::getSaveFileName(this,
+             tr("Export as PNG"), "",
+             tr("PNG Files (*.png);;All Files (*)"));
 
-    if (png == true)
+    if (fileName.isEmpty())
     {
-        QMessageBox msgBox;
-        msgBox.setText("PNG has been saved!");
-        msgBox.exec();
+        return;
     }
-    else if (png == false)
+    else
     {
-        QMessageBox msgBox;
-        msgBox.setText("PNG not saved succesfully!");
-        msgBox.exec();
+        bool png = ui->plot->savePng(fileName, 0, 0, 1.0, 100);
+
+        if (png == true)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("PNG has been saved succesfully!");
+            msgBox.exec();
+        }
+        else if (png == false)
+        {
+            QMessageBox msgBox;
+            msgBox.setText("PNG was not saved succesfully!");
+            msgBox.exec();
+        }
     }
 }
 
-// Edit colors.
+// Edit colors (not implemented).
 void MainWindow::on_actionEDIT_CATEGORY_COLORS_triggered()
 {
 //    FileManager *settingsFile = new FileManager(1, 0, "./settings/c_settings.ttt", false);
@@ -610,7 +631,8 @@ void MainWindow::on_actionEDIT_CATEGORIES_triggered()
     }
     ui->comboBox->update();
 
-    ui->comboBox->setCurrentIndex(0);
+    ui->comboBox->setCurrentIndex(ui->comboBox->count()-1);
+    activeCategory = ui->comboBox->currentText();
 }
 
 // Show about dialog.

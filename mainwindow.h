@@ -23,7 +23,8 @@ public:
 
 private slots:
     void on_spinBox_valueChanged(int arg1);
-    void graphClicked(QCPAbstractPlottable *plottable);
+    //void graphClicked(QCPAbstractPlottable *plottable);
+    //void itemClicked(QCPAbstractItem *item);
     void on_pushButton_clicked();
     void updater();
     void yourSlot();
@@ -64,6 +65,7 @@ private:
     QList <QCPBars*>list;
     QCPBars *bar;
     QVector<double> ticks;
+    //QVector<double> ticks2;
     QVector<double> ticksY;
     QVector<QString> labels;
     void setupPlot(int year, int month, int day, bool firstLaunch, QString filename);

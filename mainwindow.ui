@@ -274,7 +274,6 @@ background-color: rgb(245, 245, 245);</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <zorder>comboBox</zorder>
        </widget>
       </item>
      </layout>
