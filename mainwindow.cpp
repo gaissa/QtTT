@@ -35,16 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionLOAD_3, SIGNAL(triggered()), this, SLOT(lproject()));
 
     connect(ui->plot, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));
-
-    //connect(ui->plot,
-    //        SIGNAL(plottableClick(QCPAbstractPlottable*, QMouseEvent*)),
-    //        this,
-    //        SLOT(graphClicked(QCPAbstractPlottable*)));
-
-    //connect(ui->plot,
-    //        SIGNAL(itemClick(QCPAbstractItem*, QMouseEvent*)),
-    //        this,
-    //        SLOT(itemClicked(QCPAbstractItem*)));
 }
 
 // The destructor.
@@ -190,23 +180,11 @@ void MainWindow::setupPlot(int year, int month, int day, bool firstLaunch, QStri
     }
 }
 
-// The graph is clicked.
-//void MainWindow::graphClicked(QCPAbstractPlottable *plottable)
-//{
-    //ui->statusBar->showMessage(QString("CHOSEN CATEGORY: '%1'.").arg(plottable->name()), 15000);
-    //ui->plot->x
-    //qDebug() << plottable;
-//}
-
-// The graph is clicked.
-//void MainWindow::itemClicked(QCPAbstractItem *item)
-//{
-    //qDebug() << item;
-//}
-
 // Change the month.
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
+      ui->label_12->setText("00.00 h");
+
       tempMonth = arg1;
       ticks.clear();
       ticksY.clear();
@@ -221,6 +199,8 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 // Change the year.
 void MainWindow::on_spinBox_2_valueChanged(int arg1)
 {
+    ui->label_12->setText("00.00 h");
+
     tempYear = arg1;
     ticks.clear();
     ticksY.clear();
@@ -232,21 +212,6 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
     ui->plot->replot();
 }
 
-// FIX TO F11
-//void MainWindow::mouseDoubleClickEvent(QMouseEvent *e)
-//{
-//    QWidget::mouseDoubleClickEvent(e);
-
-//    if(isFullScreen())
-//    {
-//       this->setWindowState(Qt::WindowMaximized);
-//    }
-//    else
-//    {
-//       this->setWindowState(Qt::WindowFullScreen);
-//    }
-//}
-
 // Update the progress bar.
 void MainWindow::updater()
 {
@@ -257,7 +222,7 @@ void MainWindow::updater()
         ui->pushButton_2->click();
 
         QTimer *timer = new QTimer;
-        timer->deleteLater(true);
+        timer->deleteLater();
 
         timer->setSingleShot(true);
         connect(timer, SIGNAL(timeout()), this, SLOT(dayChangeSlot()));
@@ -315,9 +280,7 @@ void MainWindow::on_pushButton_clicked()
 
     today = QDate::currentDate();
 
-    tempDay = today.day();
-
-    //qDebug() << "TOTAL: " << f->getTotal();
+    tempDay = today.day();   
 
     ui->pushButton->setText("TRACK");
     ui->pushButton->setEnabled(false);
@@ -333,7 +296,7 @@ void MainWindow::on_pushButton_clicked()
     connect(timer, SIGNAL(timeout()), this, SLOT(updater()));
 
     // Run timer once in a second.
-    timer->start(1000);
+    timer->start(100);
 }
 
 // Stop the timer button.
@@ -457,9 +420,6 @@ void MainWindow::lproject()
         ui->centralWidget->show();
         ui->comboBox->clear();
 
-        //ui->spinBox->setValue(today.month());
-        //ui->spinBox_2->setValue(today.year());
-
         QStringList title = loadedFile.split("/");
         ui->projectNameLabel->setText(title[title.count()-1]);
 
@@ -479,7 +439,7 @@ void MainWindow::selectionChanged()
 
         if (item->selected() || ui->plot->plottable(i)->selected())
         {
-            double val = f->getCategoryTotal(true, ui->plot->plottable(i)->name(), tempYear, tempMonth);            
+            double val = f->getCategoryTotal(true, ui->plot->plottable(i)->name(), tempYear, tempMonth);
 
             QString str;            
 
@@ -502,7 +462,6 @@ void MainWindow::selectionChanged()
         else if (!(item->selected()) && !(ui->plot->plottable(i)->selected()))
         {
             ui->label_12->setText("00.00 h");
-            //break;
         }
     }
 }
@@ -511,6 +470,7 @@ void MainWindow::selectionChanged()
 void MainWindow::on_actionQUIT_triggered()
 {
      QMessageBox msgBox;
+     msgBox.setWindowTitle("Quit");
      msgBox.setText("Really quit want to quit?");
 
      QPushButton *connectButton = msgBox.addButton(tr("Quit"), QMessageBox::ActionRole);
@@ -586,24 +546,6 @@ void MainWindow::on_actionEXPORT_AS_PNG_triggered()
             msgBox.exec();
         }
     }
-}
-
-// Edit colors (not implemented).
-void MainWindow::on_actionEDIT_CATEGORY_COLORS_triggered()
-{
-//    FileManager *settingsFile = new FileManager(1, 0, "./settings/c_settings.ttt", false);
-//    QStringList temp = settingsFile->readFile();
-
-//    QColor color = QColorDialog::getColor(Qt::black, this, "Text Color");
-
-//    if(color.isValid())
-//    {
-//        QString red = QString::number(color.red());
-//        QString green = QString::number(color.green());
-//        QString blue = QString::number(color.blue());
-
-//        QMessageBox::information(this, "Text Color", "You selected " + red);
-//    }
 }
 
 // Edit categories.

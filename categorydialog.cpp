@@ -12,15 +12,14 @@ CategoryDialog::CategoryDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("Category settings");
+
     f = new FileManager(1, 0, "./settings/settings.ttt", false);
     QStringList temp = f->readFile();
 
     for (int i = 0; i < temp.count(); i++)
     {
         ui->categoryList->addItem(temp[i].split(",")[0].toLocal8Bit());
-
-        // Sort the items (disabled right now)
-        //ui->categoryList->sortItems();
     }
 }
 

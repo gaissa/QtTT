@@ -86,7 +86,7 @@ background-color: rgb(245, 245, 245);</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>        
+        </property>
        </widget>
       </item>
       <item>
@@ -182,50 +182,6 @@ color: darkRed;</string>
         <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_10">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>MONTHLY TOTAL: </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_11">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(245, 245, 245);</string>
-        </property>
-        <property name="text">
-         <string>00.00 h</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>8</width>
           <height>20</height>
          </size>
         </property>
@@ -419,7 +375,6 @@ background-color: rgb(245, 245, 245);</string>
      <string>SETTINGS</string>
     </property>
     <addaction name="actionEDIT_CATEGORIES"/>
-    <addaction name="actionEDIT_CATEGORY_COLORS"/>
    </widget>
    <widget class="QMenu" name="menuHELP">
     <property name="title">

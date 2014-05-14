@@ -7,6 +7,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+    this->setWindowTitle("About QtTT");
 }
 
 AboutDialog::~AboutDialog()

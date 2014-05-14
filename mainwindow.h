@@ -26,7 +26,7 @@ private slots:
     void on_actionQUIT_triggered();
     void on_actionEXPORT_AS_PDF_triggered();
     void on_actionEXPORT_AS_PNG_triggered();
-    void on_actionEDIT_CATEGORY_COLORS_triggered();
+    //void on_actionEDIT_CATEGORY_COLORS_triggered();
     void on_actionEDIT_CATEGORIES_triggered();
     void on_actionABOUT_QtTT_triggered();
 
@@ -38,9 +38,6 @@ private slots:
     void on_pushButton_3_clicked();
     void on_comboBox_activated(const QString &arg1);
     void on_spinBox_2_valueChanged(int arg1);
-
-    //void graphClicked(QCPAbstractPlottable *plottable);
-    //void itemClicked(QCPAbstractItem *item);
 
 public slots:
     void nproject();
@@ -71,10 +68,6 @@ private:
     int tempYear;
     QString loadedFile;
     QString activeCategory;
-
-    //QStringList colorHolder;
-    //void mouseDoubleClickEvent(QMouseEvent *e);
-    //QVector<double> ticks2;
 };
 
 #endif // MAINWINDOW_H

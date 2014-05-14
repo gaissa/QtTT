@@ -195,9 +195,7 @@ void FileManager::writeData(QStringList q, bool checkStatus)
         for (int i = 2; i <= oldTemporaryData.count()-1; i++)
         {
            projectTotal = projectTotal + oldTemporaryData[i].toDouble();
-        }
-
-        //qDebug() << "PROJECT TOTAL" << projectTotal;
+        }       
 
         QString oldData = oldTemporaryData.join(",");
         QString newData = q.join(",");
@@ -245,8 +243,6 @@ void FileManager::writeData(QStringList q, bool checkStatus)
 
 double FileManager::getCategoryTotal(bool check, QString activeCategory, int year, int month)
 {
-    //qDebug() << month;
-
     if (check)
     {
        QString temp;       
@@ -269,7 +265,7 @@ double FileManager::getCategoryTotal(bool check, QString activeCategory, int yea
        }
 
        return temp2;
-    }    
+    }
 
     double temp2 = 0.0;
     return temp2;
@@ -293,13 +289,7 @@ void FileManager::readMonthlyTotals(QString data)
     {
         total = total + list->at(0)[today-1].toDouble();
     }
-    totalAmount = total;
-}
-
-// Return the total amount for the day.
-double FileManager::getTotal()
-{
-    return totalAmount;
+    //totalAmount = total;
 }
 
 // Add new category.
