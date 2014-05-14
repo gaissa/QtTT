@@ -3526,3 +3526,4 @@ protected:
 };
 
 #endif // QCUSTOMPLOT_H
+

@@ -239,14 +239,30 @@ void MainWindow::updater()
         {
             sCounter = 0;
             mCounter++;
-            ui->label_5->setText(QString::number(mCounter));
 
             if (mCounter == 60)
             {
                 mCounter = 0;
                 hCounter++;
-                ui->label_8->setText(QString::number(hCounter));
             }
+        }
+
+        if (hCounter < 10)
+        {
+            ui->label_8->setText("0" + QString::number(hCounter));
+        }
+        else
+        {
+            ui->label_8->setText(QString::number(hCounter));
+        }
+
+        if (mCounter < 10)
+        {
+             ui->label_5->setText("0" + QString::number(mCounter));
+        }
+        else
+        {
+            ui->label_5->setText(QString::number(mCounter));
         }
 
         if (sCounter < 10)
@@ -257,6 +273,7 @@ void MainWindow::updater()
         {
             ui->label_3->setText(QString::number(sCounter));
         }
+
         ui->progressBar->setValue(tCounter);
     }
 }
@@ -296,7 +313,7 @@ void MainWindow::on_pushButton_clicked()
     connect(timer, SIGNAL(timeout()), this, SLOT(updater()));
 
     // Run timer once in a second.
-    timer->start(100);
+    timer->start(1000);
 }
 
 // Stop the timer button.
