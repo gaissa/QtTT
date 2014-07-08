@@ -1,4 +1,4 @@
 QtTT
 ====
 
-A Qt project time tracker.
+A C++/Qt project time tracker.
